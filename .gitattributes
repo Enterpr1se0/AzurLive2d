@@ -1,7 +1,7 @@
-*.json filter=lfs diff=lfs merge=lfs -text
-*.moc3 filter=lfs diff=lfs merge=lfs -text
-*.png filter=lfs diff=lfs merge=lfs -text
 models/**/*.json* filter=lfs diff=lfs merge=lfs -text
 models/**/*.moc3* filter=lfs diff=lfs merge=lfs -text
 models/**/textures/*.png* filter=lfs diff=lfs merge=lfs -text
 models/**/motions/*.json* filter=lfs diff=lfs merge=lfs -text
+*.json filter=lfs diff=lfs merge=lfs -text
+*.moc3 filter=lfs diff=lfs merge=lfs -text
+*.png filter=lfs diff=lfs merge=lfs -text
