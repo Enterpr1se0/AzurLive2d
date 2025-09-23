@@ -1,12 +1,35 @@
-    const MODELS_API = `/api/models`;
-    
+
+
     let app, model;
     let modelsList = [];
     let isDragging = false;
     let dragOffset = { x: 0, y: 0 };
-    let eyeTrackingEnabled = true;
+    let controlsPanelOpen = false;
+    let currentScale = 0.15;
 
+    // 移动端控制面板切换
+    function toggleControlsPanel() {
+        const controls = document.getElementById('controls');
+        const overlay = document.getElementById('controlsOverlay');
+        const toggle = document.getElementById('controlsToggle');
+        
+        controlsPanelOpen = !controlsPanelOpen;
+        
+        if (controlsPanelOpen) {
+            controls.classList.add('active');
+            overlay.classList.add('active');
+            toggle.innerHTML = '✕';
+        } else {
+            controls.classList.remove('active');
+            overlay.classList.remove('active');
+            toggle.innerHTML = '⚙️';
+        }
+    }
 
+    // 检测设备类型
+    function isMobileDevice() {
+        return window.innerWidth <= 767 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
 
     // 初始化PIXI应用
     function initPixiApp() {
@@ -16,13 +39,14 @@
             transparent: true,
             autoDensity: true,
             width: 400,
-            height: 600
+            height: 500
         });
         
         // 自动调整canvas大小
         const resizeObserver = new ResizeObserver(() => {
             const container = document.getElementById('live2dContainer');
-            app.renderer.resize(container.clientWidth, container.clientHeight - 30);
+            const rect = container.getBoundingClientRect();
+            app.renderer.resize(rect.width, rect.height - 30);
         });
         resizeObserver.observe(document.getElementById('live2dContainer'));
     }
@@ -83,7 +107,6 @@
                 model = null;
             }
 
-            //const fullModelPath = `${API_BASE}${modelPath}`;
             const fullModelPath = `./models${modelPath}`;
             console.log('加载模型:', fullModelPath);
 
@@ -92,7 +115,7 @@
             app.stage.addChild(model);
 
             // 设置模型位置和缩放
-            model.scale.set(0.15);
+            model.scale.set(currentScale);
             model.x = app.screen.width / 2;
             model.y = app.screen.height / 2;
             model.anchor.set(0.5, 0.5);
@@ -136,15 +159,19 @@
         document.getElementById('motionButtons').innerHTML = '';
     }
 
-    // 鼠标移动处理
-    function handleMouseMove(e) {
-        if (model && eyeTrackingEnabled) {
-            const container = document.getElementById('live2dContainer');
-            const rect = container.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top - 30; // 减去拖拽栏高度
-            //  model.focus(x, y);
+    // 更新模型缩放
+    function updateModelScale(scale) {
+        currentScale = parseFloat(scale);
+        document.getElementById('scaleValue').textContent = currentScale.toFixed(1);
+        
+        if (model) {
+            model.scale.set(currentScale);
         }
+    }
+
+    // 鼠标/触摸移动处理
+    function handlePointerMove(e) {
+        // 移除眼球追踪功能
     }
 
     // 应用窗口设置
@@ -155,10 +182,12 @@
         const width = document.getElementById('width').value;
         const height = document.getElementById('height').value;
 
-        container.style.left = `${posX}px`;
-        container.style.top = `${posY}px`;
-        container.style.width = `${width}px`;
-        container.style.height = `${height}px`;
+        if (!isMobileDevice()) {
+            container.style.left = `${posX}px`;
+            container.style.top = `${posY}px`;
+            container.style.width = `${width}px`;
+            container.style.height = `${height}px`;
+        }
 
         // 重新定位模型到中心
         if (model) {
@@ -167,50 +196,85 @@
                 model.y = app.screen.height / 2;
             }, 100);
         }
+
+        // 移动端自动关闭面板
+        if (isMobileDevice() && controlsPanelOpen) {
+            toggleControlsPanel();
+        }
     }
 
     // 重置窗口设置
     function resetWindowSettings() {
-        document.getElementById('posX').value = 722;
-        document.getElementById('posY').value = 37;
-        document.getElementById('width').value = 1000;
-        document.getElementById('height').value = 1000;
+        if (isMobileDevice()) {
+            document.getElementById('posX').value = 10;
+            document.getElementById('posY').value = 10;
+            document.getElementById('width').value = window.innerWidth - 20;
+            document.getElementById('height').value = window.innerHeight - 20;
+        } else {
+            document.getElementById('posX').value = 500;
+            document.getElementById('posY').value = 50;
+            document.getElementById('width').value = 1400;
+            document.getElementById('height').value = 900;
+        }
         applyWindowSettings();
     }
 
-    // 拖拽功能
+    // 拖拽功能（支持触摸）
     function initDragging() {
         const dragHandle = document.getElementById('dragHandle');
         const container = document.getElementById('live2dContainer');
 
-        dragHandle.addEventListener('mousedown', (e) => {
+        // 鼠标事件
+        dragHandle.addEventListener('mousedown', startDrag);
+        // 触摸事件
+        dragHandle.addEventListener('touchstart', startDrag, { passive: false });
+
+        function startDrag(e) {
+            e.preventDefault();
             isDragging = true;
             const rect = container.getBoundingClientRect();
-            dragOffset.x = e.clientX - rect.left;
-            dragOffset.y = e.clientY - rect.top;
+            
+            const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+            const clientY = e.clientY || (e.touches && e.touches[0].clientY);
+            
+            dragOffset.x = clientX - rect.left;
+            dragOffset.y = clientY - rect.top;
             dragHandle.style.cursor = 'grabbing';
-        });
+        }
 
-        document.addEventListener('mousemove', (e) => {
-            if (isDragging) {
-                const newX = e.clientX - dragOffset.x;
-                const newY = e.clientY - dragOffset.y;
+        // 鼠标移动
+        document.addEventListener('mousemove', handleDragMove);
+        // 触摸移动
+        document.addEventListener('touchmove', handleDragMove, { passive: false });
+
+        function handleDragMove(e) {
+            if (isDragging && !isMobileDevice()) {
+                e.preventDefault();
+                const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+                const clientY = e.clientY || (e.touches && e.touches[0].clientY);
                 
-                container.style.left = `${newX}px`;
-                container.style.top = `${newY}px`;
+                const newX = clientX - dragOffset.x;
+                const newY = clientY - dragOffset.y;
+                
+                container.style.left = `${Math.max(0, newX)}px`;
+                container.style.top = `${Math.max(0, newY)}px`;
                 
                 // 更新输入框的值
-                document.getElementById('posX').value = newX;
-                document.getElementById('posY').value = newY;
+                document.getElementById('posX').value = Math.max(0, newX);
+                document.getElementById('posY').value = Math.max(0, newY);
             }
-        });
+        }
 
-        document.addEventListener('mouseup', () => {
+        // 结束拖拽
+        document.addEventListener('mouseup', endDrag);
+        document.addEventListener('touchend', endDrag);
+
+        function endDrag() {
             if (isDragging) {
                 isDragging = false;
                 dragHandle.style.cursor = 'move';
             }
-        });
+        }
     }
 
     // 显示/隐藏加载指示器
@@ -224,7 +288,7 @@
         loadingIndicator.innerHTML = `
             <div style="text-align: center; color: #dc3545;">
                 <div>❌ ${message}</div>
-                <div style="margin-top: 10px; font-size: 12px; color: #666;">请检查网络连接或服务器状态</div>
+                <div style="margin-top: 10px; font-size: 14px; color: #666;">请检查网络连接或服务器状态</div>
             </div>
         `;
         loadingIndicator.style.display = 'block';
@@ -233,7 +297,7 @@
             loadingIndicator.innerHTML = `
                 <div style="text-align: center;">
                     <div>加载中...</div>
-                    <div style="margin-top: 10px; font-size: 12px; color: #666;">请稍候</div>
+                    <div style="margin-top: 10px; font-size: 14px; color: #666;">请稍候</div>
                 </div>
             `;
         }, 3000);
@@ -247,18 +311,18 @@
         }
     });
 
-    document.getElementById('eyeTracking').addEventListener('change', (e) => {
-        eyeTrackingEnabled = e.target.checked;
+    document.getElementById('modelScale').addEventListener('input', (e) => {
+        updateModelScale(e.target.value);
     });
 
-    // 鼠标移动监听
-    document.addEventListener('mousemove', handleMouseMove);
+    // 控制面板切换
+    document.getElementById('controlsToggle').addEventListener('click', toggleControlsPanel);
+    document.getElementById('controlsOverlay').addEventListener('click', toggleControlsPanel);
 
     // 输入框变化监听
     ['posX', 'posY', 'width', 'height'].forEach(id => {
         document.getElementById(id).addEventListener('input', () => {
-            // 实时更新（可选）
-            // applyWindowSettings();
+
         });
     });
 
@@ -266,7 +330,14 @@
     window.addEventListener('load', () => {
         initPixiApp();
         initDragging();
-        applyWindowSettings();
+        
+        // 移动端自动调整
+        if (isMobileDevice()) {
+            resetWindowSettings();
+        } else {
+            applyWindowSettings();
+        }
+        
         showLoading(false);
         loadModelsList();
     });
@@ -279,4 +350,31 @@
                 model.y = app.screen.height / 2;
             }, 100);
         }
+        
+        // 移动端自动调整尺寸
+        if (isMobileDevice()) {
+            const container = document.getElementById('live2dContainer');
+            container.style.left = '10px';
+            container.style.top = '10px';
+            container.style.right = '10px';
+            container.style.bottom = '10px';
+            container.style.width = 'auto';
+            container.style.height = 'auto';
+        }
     });
+
+    // 防止移动端页面缩放
+    document.addEventListener('touchstart', function(event) {
+        if (event.touches.length > 1) {
+            event.preventDefault();
+        }
+    });
+
+    let lastTouchEnd = 0;
+    document.addEventListener('touchend', function(event) {
+        const now = (new Date()).getTime();
+        if (now - lastTouchEnd <= 300) {
+            event.preventDefault();
+        }
+        lastTouchEnd = now;
+    }, false);
