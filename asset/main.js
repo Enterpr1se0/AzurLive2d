@@ -31,7 +31,7 @@
     async function loadModelsList() {
         try {
             setStatus('loading');
-            const response = await fetch('./models.json');
+            const response = await fetch('./asset/models.json');
             const result = await response.json();
             if (result.code === 1 && result.data) {
                 modelsList = result.data;
