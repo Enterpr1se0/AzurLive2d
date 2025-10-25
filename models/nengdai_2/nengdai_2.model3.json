@@ -1,3 +1,74 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:d2e866b3541bb14299d4e04a6ce7bb32a9c925945d7cc2cd6e607c86fdff76d5
-size 2033
+{
+  "Version": 3,
+  "FileReferences": {
+    "Moc": "nengdai_2.moc3",
+    "Textures": [
+      "textures/texture_00.webp"
+    ],
+    "Physics": "nengdai_2.physics3.json",
+    "Expressions": [],
+    "Motions": {
+      "": [
+        {
+          "File": "motions/home.motion3.json"
+        },
+        {
+          "File": "motions/touch_special.motion3.json"
+        },
+        {
+          "File": "motions/mail.motion3.json"
+        },
+        {
+          "File": "motions/main_3.motion3.json"
+        },
+        {
+          "File": "motions/wedding.motion3.json"
+        },
+        {
+          "File": "motions/touch_body.motion3.json"
+        },
+        {
+          "File": "motions/touch_head.motion3.json"
+        },
+        {
+          "File": "motions/mission.motion3.json"
+        },
+        {
+          "File": "motions/main_2.motion3.json"
+        },
+        {
+          "File": "motions/login.motion3.json"
+        },
+        {
+          "File": "motions/mission_complete.motion3.json"
+        },
+        {
+          "File": "motions/complete.motion3.json"
+        },
+        {
+          "File": "motions/main_1.motion3.json"
+        },
+        {
+          "File": "motions/home.motion3.json"
+        }
+      ]
+    }
+  },
+  "Groups": [
+    {
+      "Target": "Parameter",
+      "Name": "LipSync",
+      "Ids": [
+        "ParamMouthOpenY"
+      ]
+    },
+    {
+      "Target": "Parameter",
+      "Name": "EyeBlink",
+      "Ids": [
+        "ParamEyeLOpen",
+        "ParamEyeROpen"
+      ]
+    }
+  ]
+}

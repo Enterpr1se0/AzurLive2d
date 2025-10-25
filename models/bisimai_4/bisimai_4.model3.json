@@ -1,3 +1,196 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:fb0cf28c29f7cf5cbb202a9270fcc3e8997a47b33a7e056542cee7888adbe2a0
-size 3789
+{
+  "Version": 3,
+  "Name": "bisimai_4",
+  "FileReferences": {
+    "Moc": "bisimai_4.moc3",
+    "Textures": [
+      "textures/texture_00.webp",
+      "textures/texture_01.webp"
+    ],
+    "DisplayInfo": null,
+    "Physics": "bisimai_4.physics3.json",
+    "Motions": {
+      "login": [
+        {
+          "File": "motions/login.motion3.json",
+          "Text": "当着你的面“包装礼物”……会不会有些太奇怪了？",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/0/01/4ntmozx0htxkqpxih6zjfv5d07ermx4.mp3"
+        }
+      ],
+      "home": [
+        {
+          "File": "motions/home.motion3.json",
+          "Text": "辛苦了，指挥官。在稍作休息之后，可以帮我一点小忙么？",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/e/e1/4rpenvjupg5y1nddtsnlzpra1133acq.mp3"
+        }
+      ],
+      "main_1": [
+        {
+          "File": "motions/main_1.motion3.json",
+          "Text": "我是喝了一点。毕竟这样的事情，我也是第一次做……想着也许这样能让我表现得更自然一些，或者更“勇敢”一些……？",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/8/8a/crfllpx36bpyh7lu0o8ykyzibhehz5e.mp3"
+        }
+      ],
+      "main_2": [
+        {
+          "File": "motions/main_2.motion3.json",
+          "Text": "难得有这样给你准备惊喜的机会，如果刚刚没有不小心弄出声响，现在应该是截然不同的局面吧……",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/e/ed/7mbnlm67u7fn3vq14udyspero8yhweg.mp3"
+        }
+      ],
+      "main_3": [
+        {
+          "File": "motions/main_3.motion3.json",
+          "Text": "很在意这身衣服么？嗯……毕竟是礼物，你能喜欢真是再好不过了。",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/2/22/97nwv1iw0qm50v0ftdbr2be57qmx19u.mp3"
+        }
+      ],
+      "mail": [
+        {
+          "File": "motions/mail.motion3.json"
+        }
+      ],
+      "mission": [
+        {
+          "File": "motions/mission.motion3.json"
+        }
+      ],
+      "mission_complete": [
+        {
+          "File": "motions/mission_complete.motion3.json"
+        }
+      ],
+      "complete": [
+        {
+          "File": "motions/complete.motion3.json"
+        }
+      ],
+      "wedding": [
+        {
+          "File": "motions/wedding.motion3.json"
+        }
+      ],
+      "touch_head": [
+        {
+          "File": "motions/touch_head.motion3.json"
+        }
+      ],
+      "touch_body": [
+        {
+          "File": "motions/touch_body.motion3.json"
+        }
+      ],
+      "touch_special": [
+        {
+          "File": "motions/touch_special.motion3.json",
+          "Text": "虽说是未完成的圣诞惊喜，但既然你很满意的话……",
+          "Audio": "https://patchwiki.biligame.com/images/blhx/d/d1/0lv1pf8wywz3mcwpcss2pcblujvjyj3.mp3"
+        }
+      ],
+      "touch_drag15": [
+        {
+          "File": "motions/touch_drag15.motion3.json"
+        }
+      ],
+      "idle": [
+        {
+          "File": "motions/idle.motion3.json"
+        }
+      ],
+      "touch_idle1": [
+        {
+          "File": "motions/touch_idle1.motion3.json"
+        }
+      ],
+      "idle1": [
+        {
+          "File": "motions/idle1.motion3.json"
+        }
+      ],
+      "touch_idle2": [
+        {
+          "File": "motions/touch_idle2.motion3.json"
+        }
+      ],
+      "idle2": [
+        {
+          "File": "motions/idle2.motion3.json"
+        }
+      ],
+      "touch_idle3": [
+        {
+          "File": "motions/touch_idle3.motion3.json"
+        }
+      ],
+      "idle3": [
+        {
+          "File": "motions/idle3.motion3.json"
+        }
+      ],
+      "touch_idle4": [
+        {
+          "File": "motions/touch_idle4.motion3.json"
+        }
+      ],
+      "idle4": [
+        {
+          "File": "motions/idle4.motion3.json"
+        }
+      ],
+      "touch_idle5": [
+        {
+          "File": "motions/touch_idle5.motion3.json"
+        }
+      ],
+      "idle5": [
+        {
+          "File": "motions/idle5.motion3.json"
+        }
+      ],
+      "touch_idle6": [
+        {
+          "File": "motions/touch_idle6.motion3.json"
+        }
+      ],
+      "touch_idle7": [
+        {
+          "File": "motions/touch_idle7.motion3.json"
+        }
+      ],
+      "touch_idle8": [
+        {
+          "File": "motions/touch_idle8.motion3.json"
+        }
+      ],
+      "touch_idle9": [
+        {
+          "File": "motions/touch_idle9.motion3.json"
+        }
+      ],
+      "effect": [
+        {
+          "File": "motions/effect.motion3.json"
+        }
+      ]
+    },
+    "Expressions": []
+  },
+  "Groups": [
+    {
+      "Target": "Parameter",
+      "Name": "EyeBlink",
+      "Ids": [
+        "ParamEyeLOpen",
+        "ParamEyeROpen"
+      ]
+    },
+    {
+      "Target": "Parameter",
+      "Name": "LipSync",
+      "Ids": [
+        "ParamMouthOpenY",
+        "ParamMouthOpenY2"
+      ]
+    }
+  ]
+}

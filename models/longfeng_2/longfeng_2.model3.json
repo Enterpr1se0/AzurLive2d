@@ -1,3 +1,78 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:831cec1bdddff163cda0442eb6b9d90cc9f6574b507a624f6743a4301324b0b3
-size 2171
+{
+  "Version": 3,
+  "FileReferences": {
+    "Moc": "longfeng_2.moc3",
+    "Textures": [
+      "textures/texture_00.webp",
+      "textures/texture_01.webp"
+    ],
+    "Physics": "longfeng_2.physics3.json",
+    "Expressions": [],
+    "Motions": {
+      "": [
+        {
+          "File": "motions/wedding.motion3.json"
+        },
+        {
+          "File": "motions/idle.motion3.json"
+        },
+        {
+          "File": "motions/main_2.motion3.json"
+        },
+        {
+          "File": "motions/complete.motion3.json"
+        },
+        {
+          "File": "motions/home.motion3.json"
+        },
+        {
+          "File": "motions/main_3.motion3.json"
+        },
+        {
+          "File": "motions/mail.motion3.json"
+        },
+        {
+          "File": "motions/touch_head.motion3.json"
+        },
+        {
+          "File": "motions/touch_special.motion3.json"
+        },
+        {
+          "File": "motions/mission.motion3.json"
+        },
+        {
+          "File": "motions/login.motion3.json"
+        },
+        {
+          "File": "motions/mission_complete.motion3.json"
+        },
+        {
+          "File": "motions/effect.motion3.json"
+        },
+        {
+          "File": "motions/touch_body.motion3.json"
+        },
+        {
+          "File": "motions/wedding.motion3.json"
+        }
+      ]
+    }
+  },
+  "Groups": [
+    {
+      "Target": "Parameter",
+      "Name": "LipSync",
+      "Ids": [
+        "ParamMouthOpenY"
+      ]
+    },
+    {
+      "Target": "Parameter",
+      "Name": "EyeBlink",
+      "Ids": [
+        "ParamEyeLOpen",
+        "ParamEyeROpen"
+      ]
+    }
+  ]
+}

@@ -1,3 +1,75 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:9faee16693e61e8ee50f4be68c1e32421825d138d49e724e9b68a5f33cf22263
-size 2071
+{
+  "Version": 3,
+  "FileReferences": {
+    "Moc": "tierbici_2.moc3",
+    "Textures": [
+      "textures/texture_00.webp",
+      "textures/texture_01.webp"
+    ],
+    "Physics": "tierbici_2.physics3.json",
+    "Expressions": [],
+    "Motions": {
+      "": [
+        {
+          "File": "motions/touch_body.motion3.json"
+        },
+        {
+          "File": "motions/mission.motion3.json"
+        },
+        {
+          "File": "motions/idle.motion3.json"
+        },
+        {
+          "File": "motions/touch_special.motion3.json"
+        },
+        {
+          "File": "motions/touch_head.motion3.json"
+        },
+        {
+          "File": "motions/main_1.motion3.json"
+        },
+        {
+          "File": "motions/complete.motion3.json"
+        },
+        {
+          "File": "motions/home.motion3.json"
+        },
+        {
+          "File": "motions/login.motion3.json"
+        },
+        {
+          "File": "motions/mail.motion3.json"
+        },
+        {
+          "File": "motions/mission_complete.motion3.json"
+        },
+        {
+          "File": "motions/main_2.motion3.json"
+        },
+        {
+          "File": "motions/wedding.motion3.json"
+        },
+        {
+          "File": "motions/touch_body.motion3.json"
+        }
+      ]
+    }
+  },
+  "Groups": [
+    {
+      "Target": "Parameter",
+      "Name": "LipSync",
+      "Ids": [
+        "ParamMouthOpenY"
+      ]
+    },
+    {
+      "Target": "Parameter",
+      "Name": "EyeBlink",
+      "Ids": [
+        "ParamEyeLOpen",
+        "ParamEyeROpen"
+      ]
+    }
+  ]
+}

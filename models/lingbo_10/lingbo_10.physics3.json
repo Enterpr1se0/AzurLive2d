@@ -1,3 +1,21 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:4bb9078d16f3ca240ffd14f22473596e810f3ff9c5512b4e96fadb3e3db49741
-size 376
+{
+  "Version": 3,
+  "Meta": {
+    "PhysicsSettingCount": 0,
+    "TotalInputCount": 0,
+    "TotalOutputCount": 0,
+    "VertexCount": 0,
+    "EffectiveForces": {
+      "Gravity": {
+        "X": 0,
+        "Y": -1
+      },
+      "Wind": {
+        "X": 0,
+        "Y": 0
+      }
+    },
+    "PhysicsDictionary": []
+  },
+  "PhysicsSettings": []
+}

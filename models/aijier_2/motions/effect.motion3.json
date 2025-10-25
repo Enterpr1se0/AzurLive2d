@@ -1,3 +1,37 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:c9b462cc3f48ffb19212f6187d6ee6b88e88582b4f4de6389fcfc783f86ee391
-size 638
+{
+  "Version": 3,
+  "Meta": {
+    "Duration": 10.633,
+    "Fps": 30.0,
+    "Loop": true,
+    "AreBeziersRestricted": true,
+    "FadeInTime": 0.0,
+    "FadeOutTime": 0.0,
+    "CurveCount": 1,
+    "TotalSegmentCount": 2,
+    "TotalPointCount": 2,
+    "UserDataCount": 1,
+    "TotalUserDataSize": 0
+  },
+  "Curves": [
+    {
+      "Target": "Parameter",
+      "Id": "ParamMouthOpenY",
+      "FadeInTime": -1.0,
+      "FadeOutTime": -1.0,
+      "Segments": [
+        0,
+        0,
+        0,
+        10.633,
+        0
+      ]
+    }
+  ],
+  "UserData": [
+    {
+      "Time": 0.0,
+      "Value": ""
+    }
+  ]
+}
